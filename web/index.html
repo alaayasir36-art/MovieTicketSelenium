@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Ticket Price Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            color: #1d2671;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #1d2671;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #1d2671;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #14204a;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #c33764;
+        }
+
+        .success {
+            color: #1d2671;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Movie Ticket Price</h1>
+
+        <label for="age">Enter Age</label>
+        <input type="number" id="age" placeholder="e.g. 25" />
+
+        <button id="calculate">Calculate</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("calculate").addEventListener("click", function () {
+            const age = parseInt(document.getElementById("age").value);
+            const resultElement = document.getElementById("result");
+
+            let result = "";
+
+            if (isNaN(age) || age < 0) {
+                result = "Invalid age";
+                resultElement.className = "error";
+            } else if (age < 18) {
+                result = "Price: $5";
+                resultElement.className = "success";
+            } else if (age <= 59) {
+                result = "Price: $10";
+                resultElement.className = "success";
+            } else {
+                result = "Price: $6";
+                resultElement.className = "success";
+            }
+
+            resultElement.innerText = result;
+        });
+    </script>
+</body>
+</html>
