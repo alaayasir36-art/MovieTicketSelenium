@@ -26,8 +26,14 @@ public class TicketCalculatorSeleniumTest {
     @BeforeEach
     void setup() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
 
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");       // run without GUI
+        options.addArguments("--disable-gpu");    // recommended
+        options.addArguments("--no-sandbox");     // required in CI
+        options.addArguments("--window-size=1920,1080");
+
+        driver = new ChromeDriver(options);
 
         File html = new File("web/index.html");
         driver.get(html.toURI().toString());

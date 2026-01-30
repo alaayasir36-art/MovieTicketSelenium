@@ -19,5 +19,8 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Build with Maven
+      - name: Install Chrome
+        run: sudo apt-get update && sudo apt-get install -y chromium-browser
+
+      - name: Build & Test
         run: mvn clean test
